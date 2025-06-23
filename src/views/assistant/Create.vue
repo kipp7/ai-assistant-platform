@@ -83,8 +83,8 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onMounted, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useAssistantStore } from '../../store/assistant'
 import { useKnowledgeStore } from '../../store/knowledge'
@@ -92,6 +92,7 @@ import { uploadAssistantAvatar } from '../../api/assistant'
 import { Plus as ElIconPlus } from '@element-plus/icons-vue'
 
 const router = useRouter()
+const route = useRoute()
 const assistantStore = useAssistantStore()
 const knowledgeStore = useKnowledgeStore()
 
@@ -123,6 +124,23 @@ const rules = {
     { required: true, message: '请输入助手描述', trigger: 'blur' },
     { min: 10, max: 500, message: '长度在 10 到 500 个字符', trigger: 'blur' }
   ]
+}
+
+// 检查是否有模板参数
+const checkForTemplate = () => {
+  if (route.query.template) {
+    try {
+      const templateData = JSON.parse(route.query.template)
+      Object.keys(templateData).forEach(key => {
+        if (key in form) {
+          form[key] = templateData[key]
+        }
+      })
+      ElMessage.success('已应用模板')
+    } catch (error) {
+      console.error('解析模板数据失败', error)
+    }
+  }
 }
 
 const beforeAvatarUpload = (file) => {
@@ -185,7 +203,16 @@ const fetchKnowledgeBases = async () => {
 
 onMounted(() => {
   fetchKnowledgeBases()
+  checkForTemplate()
 })
+
+// 监听路由变化，以便在路由参数更新时应用模板
+watch(
+  () => route.query,
+  () => {
+    checkForTemplate()
+  }
+)
 </script>
 
 <style scoped>
