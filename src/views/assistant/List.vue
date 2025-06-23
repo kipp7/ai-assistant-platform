@@ -160,7 +160,6 @@ import {
   Plus as ElIconPlus, 
   Files as ElIconFiles,
   MagicStick as ElIconMagicStick,
-  Files as ElIconFiles,
   Calendar as ElIconCalendar,
   ChatDotRound as ElIconChatDotRound,
   View as ElIconView,
@@ -185,7 +184,7 @@ const assistantTemplates = [
   {
     id: 1,
     name: '前端开发助手',
-    description: '擅长解答Vue、React等前端框架问题，提供代码示例和最佳实践建议',
+    description: '专注于Vue、React等前端框架，提供代码优化和最佳实践建议',
     icon: 'el-icon-monitor',
     domain: '前端开发',
     tone: '专业',
@@ -193,13 +192,27 @@ const assistantTemplates = [
       name: '前端开发助手',
       domain: '前端开发',
       tone: '专业',
-      description: '擅长解答Vue、React等前端框架问题，提供代码示例和最佳实践建议。熟悉HTML、CSS、JavaScript等前端技术，能够帮助解决开发过程中遇到的各种问题。'
+      description: '专注于Vue、React等前端框架技术，提供代码优化和最佳实践建议。熟悉HTML、CSS、JavaScript、TypeScript等前端技术栈，能够帮助解决开发过程中的技术难题和性能优化问题。'
     }
   },
   {
     id: 2,
+    name: '后端开发助手',
+    description: '擅长Node.js、Java、Python等后端技术，解决服务端开发问题',
+    icon: 'el-icon-cpu',
+    domain: '后端开发',
+    tone: '专业',
+    template: {
+      name: '后端开发助手',
+      domain: '后端开发',
+      tone: '专业',
+      description: '擅长Node.js、Java、Python等后端技术，解决服务端开发问题。熟悉数据库设计、API开发、性能优化和系统架构，能够提供高质量的技术解决方案和代码实现建议。'
+    }
+  },
+  {
+    id: 3,
     name: '产品经理助手',
-    description: '协助产品规划、需求分析和用户研究，提供产品设计和优化建议',
+    description: '协助产品规划、需求分析和用户研究，提供产品优化建议',
     icon: 'el-icon-goods',
     domain: '产品经理',
     tone: '专业',
@@ -207,25 +220,25 @@ const assistantTemplates = [
       name: '产品经理助手',
       domain: '产品经理',
       tone: '专业',
-      description: '协助产品规划、需求分析和用户研究，提供产品设计和优化建议。熟悉产品生命周期管理、竞品分析、用户故事编写等产品经理工作内容。'
-    }
-  },
-  {
-    id: 3,
-    name: 'UI设计助手',
-    description: '提供UI/UX设计建议，了解设计趋势和用户体验原则',
-    icon: 'el-icon-picture',
-    domain: '设计师',
-    tone: '友好',
-    template: {
-      name: 'UI设计助手',
-      domain: '设计师',
-      tone: '友好',
-      description: '提供UI/UX设计建议，了解设计趋势和用户体验原则。熟悉设计工具如Figma、Sketch等，能够提供界面设计、交互设计和视觉设计相关建议。'
+      description: '协助产品规划、需求分析和用户研究，提供产品优化建议。熟悉产品生命周期管理、竞品分析、用户故事编写、原型设计和产品路线图规划，帮助打造卓越的产品体验。'
     }
   },
   {
     id: 4,
+    name: 'UI/UX设计助手',
+    description: '提供界面设计和用户体验优化建议，紧跟设计趋势',
+    icon: 'el-icon-picture',
+    domain: '设计师',
+    tone: '友好',
+    template: {
+      name: 'UI/UX设计助手',
+      domain: '设计师',
+      tone: '友好',
+      description: '提供界面设计和用户体验优化建议，紧跟设计趋势。熟悉Figma、Sketch等设计工具，精通交互设计、视觉设计原则和设计系统构建，能够帮助创造美观且易用的产品界面。'
+    }
+  },
+  {
+    id: 5,
     name: '数据分析助手',
     description: '协助数据分析、可视化和解读，提供数据驱动决策建议',
     icon: 'el-icon-data-line',
@@ -235,7 +248,21 @@ const assistantTemplates = [
       name: '数据分析助手',
       domain: '数据分析',
       tone: '简洁',
-      description: '协助数据分析、可视化和解读，提供数据驱动决策建议。熟悉数据分析工具和方法，能够帮助理解复杂数据并提取有价值的洞察。'
+      description: '协助数据分析、可视化和解读，提供数据驱动决策建议。熟悉数据挖掘、统计分析方法和可视化工具，能够从复杂数据中提取有价值的洞察，支持业务决策和增长策略制定。'
+    }
+  },
+  {
+    id: 6,
+    name: '市场营销助手',
+    description: '提供营销策略、内容创作和渠道优化建议',
+    icon: 'el-icon-promotion',
+    domain: '市场营销',
+    tone: '友好',
+    template: {
+      name: '市场营销助手',
+      domain: '市场营销',
+      tone: '友好',
+      description: '提供营销策略、内容创作和渠道优化建议。熟悉数字营销、内容营销、社交媒体运营和用户增长策略，能够帮助制定有效的市场推广计划和品牌建设方案。'
     }
   }
 ]
