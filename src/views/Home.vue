@@ -36,16 +36,18 @@
             </el-empty>
           </div>
           <div v-else class="assistant-list">
-            <el-row :gutter="20">
+            <el-row :gutter="24">
               <el-col v-for="assistant in assistants.slice(0, 4)" :key="assistant.id" :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-                <el-card class="assistant-item" shadow="hover" @click="chatWithAssistant(assistant.id)">
-                  <div class="assistant-avatar">
-                    <el-avatar :size="60" :src="assistant.avatar" />
-                  </div>
-                  <h4>{{ assistant.name }}</h4>
-                  <p class="assistant-domain">{{ assistant.domain }}</p>
-                  <p class="assistant-desc">{{ assistant.description }}</p>
-                </el-card>
+                <div class="assistant-item-wrapper">
+                  <el-card class="assistant-item" shadow="hover" @click="chatWithAssistant(assistant.id)">
+                    <div class="assistant-avatar">
+                      <el-avatar :size="60" :src="assistant.avatar" />
+                    </div>
+                    <h4 :title="assistant.name">{{ assistant.name }}</h4>
+                    <p class="assistant-domain">{{ assistant.domain }}</p>
+                    <p class="assistant-desc" :title="assistant.description">{{ assistant.description }}</p>
+                  </el-card>
+                </div>
               </el-col>
             </el-row>
           </div>
@@ -249,7 +251,8 @@ onMounted(async () => {
 
 <style scoped>
 .home-container {
-  padding: 20px 0;
+  padding: 20px;
+  width: 100%;
 }
 
 .welcome-card {
@@ -308,15 +311,26 @@ onMounted(async () => {
   margin-bottom: 10px;
 }
 
+.assistant-item-wrapper {
+  padding: 8px;
+  box-sizing: border-box;
+}
+
 .assistant-item {
-  height: 200px;
+  height: auto;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   cursor: pointer;
   transition: all 0.3s;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+}
+
+.assistant-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .assistant-avatar {
@@ -324,14 +338,21 @@ onMounted(async () => {
 }
 
 .assistant-item h4 {
-  margin: 10px 0;
+  margin: 10px 0 5px;
   font-size: 16px;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .assistant-domain {
   color: #409EFF;
   font-size: 12px;
-  margin: 5px 0;
+  margin: 0 0 10px;
+  text-align: center;
+  width: 100%;
 }
 
 .assistant-desc {
@@ -340,8 +361,12 @@ onMounted(async () => {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .stat-card {
