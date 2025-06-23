@@ -8,8 +8,13 @@ import pinia from './store'
 import './style.css'
 import './assets/styles/global.css'
 
-// 引入Mock数据（生产环境下可以注释掉）
-import './mock'
+// 只在开发环境下使用Mock数据，且通过环境变量控制
+if (import.meta.env.DEV && import.meta.env.VITE_USE_MOCK === 'true') {
+  import('./mock')
+  console.log('Using mock data')
+} else {
+  console.log('Using real API')
+}
 
 const app = createApp(App)
 
