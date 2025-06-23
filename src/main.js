@@ -6,6 +6,7 @@ import App from './App.vue'
 import router from './router'
 import pinia from './store'
 import './style.css'
+import './assets/styles/global.css'
 
 // 引入Mock数据（生产环境下可以注释掉）
 import './mock'
